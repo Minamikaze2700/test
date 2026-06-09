@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小田急時刻表ビュワー</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { border-bottom: 2px solid #005a9c; padding-bottom: 10px; color: #005a9c; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #005a9c; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        #fileInput { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>小田急時刻表ビュワー</h1>
+        <input type="file" id="fileInput" accept=".oud">
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                parseOud(text);
+            };
+            reader.readAsText(file, 'Shift_JIS');
+        });
+
+        function parseOud(text) {
+            // ここにOuDiaファイルの解析ロジックを実装
+            // 実際は各駅の列データ、列車ごとの時刻を抽出して表にマッピングします
+            document.getElementById('result').innerHTML = '<p>ファイル読み込み完了。解析処理をここに実装してください。</p>';
+        }
+    </script>
+</body>
+</html>
